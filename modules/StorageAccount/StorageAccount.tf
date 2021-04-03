@@ -10,6 +10,10 @@ variable "location" {
   type = string
 }
 
+variable "tags" {
+  type = map
+}
+
 resource "azurerm_storage_account" "storage_account" {
   name                     = var.name
   resource_group_name      = var.resource_group_name
@@ -18,6 +22,6 @@ resource "azurerm_storage_account" "storage_account" {
   account_replication_type = "GRS"
 
   tags = {
-    environment = "staging"
+    environment = var.tags
   }
 }
